@@ -1,0 +1,158 @@
+import numpy as np
+import random
+def move(num):
+    z = []
+    print(A , "\n")
+    print("it is player" + str(num) +" turn input ")
+    
+    while True:
+        y = int(input("column: ")) 
+        y -= 1  # Adjusting for 0-based indexing
+        
+        if y < 0 or y >= len(A[0]):
+            print("Invalid column number. Please choose again.")
+            continue
+        
+        for j in range(len(A) - 1, -1, -1):
+            if A[j, y] == 0:
+                A[j, y] = num
+                z.append(j)
+                z.append(y)
+                print(A)
+                return z
+        
+        print("The column is full. Please choose another column.")
+
+################################################################
+def check(num , x1 , y1):
+    tx = x1
+    ty = y1
+    counter = 0
+    #####ghotr rast paiin
+    while (tx < len(A) and ty < len(A)):
+        if A[tx,ty] == num:
+            counter += 1
+        elif A[tx,ty] != num:
+            counter -= 1
+        tx += 1
+        ty += 1
+    if counter == 4:
+        return True
+    tx = x1
+    ty = y1
+    counter = 0
+    ####ghotr rast bala
+    while (-1<tx and ty < len(A)):
+        if A[tx,ty] == num:
+            counter += 1
+        elif A[tx,ty] != num:
+            counter -= 1
+        tx -= 1
+        ty += 1
+    if counter == 4:
+        return True
+    tx = x1
+    ty = y1    
+    counter = 0
+    ####ghotr chatp paiin
+    while (tx < len(A) and -1<ty ):
+        if A[tx,ty] == num:
+            counter += 1
+        elif A[tx,ty] != num:
+            counter -= 1
+        tx += 1
+        ty -= 1
+    if counter == 4:
+        return True
+    
+    tx = x1
+    ty = y1
+    counter = 0
+    ####ghotri chap bala
+    while (-1<tx and -1<ty):
+        if A[tx,ty] == num:
+            counter += 1
+        elif A[tx,ty] != num:
+            counter -= 1
+        tx -= 1
+        ty -= 1
+    if counter == 4:
+        return True
+    tx = x1
+    ty = y1
+    counter = 0
+    ####satri chap ravande
+    while (-1<ty):
+        if A[tx,ty] == num:
+            counter += 1
+        elif A[tx,ty] != num:
+            counter -= 1
+        ty -= 1
+    if counter == 4:
+        return True
+    tx = x1
+    ty = y1
+    counter = 0
+    #####satri rast ravande
+    while (ty<len(A)):
+        if A[tx,ty] == num:
+            counter += 1
+        elif A[tx,ty] != num:
+            counter -= 1
+        ty += 1
+    if counter == 4:
+        return True
+    tx = x1
+    ty = y1
+    counter = 0
+    #####sotoni paiin ravande
+    while (tx<len(A)):
+        if A[tx,ty] == num:
+            counter += 1
+        elif A[tx,ty] != num:
+            counter -= 1
+        tx += 1
+    if counter == 4:
+        return True
+    tx = x1
+    ty = y1
+    counter = 0
+    #####sotoni bala ravande
+    while (-1<tx):
+        if A[tx,ty] == num:
+            counter += 1
+        elif A[tx,ty] != num:
+            counter -= 1
+        tx -= 1
+    if counter == 4:
+        return True
+    
+    
+    return False
+        
+        
+    
+        
+    
+    
+        
+
+
+A = np.zeros((5,5))
+
+turn = random.randint(1,100)
+while True:
+    if ((turn%2) == 0): #its player 1 turn
+        a1 = move(1)
+        row = a1[0]
+        if check(1 , row , a1[1]):
+            print("player 1 wins")
+            break
+    else:
+        a2 = move(2)
+        row = a2[0]
+        if check(2 , row , a2[1]):
+            print("player 2 wins")
+            break
+    turn = turn+1
+     
