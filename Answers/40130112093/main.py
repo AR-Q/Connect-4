@@ -34,12 +34,8 @@ while running:
             if select_row[X] >= 0:
                 board[select_row[X]][X] = turn + 1
                 game = endgame(board,turn +1)
+                print(board, game)
                 turn = (turn + 1) % 2
-                print(board)
-            
-
-        
-            
 
 
     screan.fill("cyan")
@@ -116,10 +112,15 @@ while running:
         elif 450 < x < 550:
             pygame.draw.circle(screan, color, (500,configure_selected_row[4]), 30)
             X = 4
+    elif game > 0:
+        text_turn = font.render(f'The Winner is Player{game}', True,"black","cyan")
+        textRect_turn = text_turn.get_rect()
+        textRect_turn.center = (700,200)
+        screan.blit(text_turn, textRect_turn)
     else:
-        text_winner = font.render(f'The WINNER is Player{game}', True,"yellow","cyan")
-        textRect_winner = text_winner.get_rect()
-        textRect_winner.center = (700,250)
+        text_turn = font.render('Draw', True,"black","cyan")
+        textRect_turn = text_turn.get_rect()
+        textRect_turn.center = (700,250)
         screan.blit(text_turn, textRect_turn)
     
     pygame.display.flip()

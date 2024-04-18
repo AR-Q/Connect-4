@@ -49,6 +49,8 @@ def endgame(board: np.array, turn):
         return turn
     elif h_win(board, turn):
         return turn
+    elif d_win(board,turn):
+        return turn
     elif draw(board):
         return 0
     
@@ -85,27 +87,79 @@ def h_win(board: np.array, turn):
     
     return False
 
-# def d_win(board: np.array, turn):
+def d_win(board: np.array, turn):
     
-#     for i in range(2):
-#         counter = 0
-#         for j in range(5):
+    try:
+        for i in range(2):
+            counter = 0
+            for j in range(0,4):
+                if board[j][j+i] == turn:
+                    counter += 1
+                else:
+                    counter = 0
+            
+            if counter == 4:
+                return True
+    except:
+        print("")
+        
+    try:
+        for i in range(2):
+            counter = 0
+            for j in range(1,5):
+                if board[j][j-i] == turn:
+                    counter += 1
+            
+            if counter == 4:
+                return True
+    except:
+        print("")
+    
+    try:
+
+        for i in range(2):
+            counter = 0
+            for j in range(0,4):
+                if board[j][3+i-j] == turn:
+                    counter += 1
+            
+            if counter == 4:
+                return True
+    except:
+        print("")
+        
+    try:
+
+        for i in range(2):
+            counter = 0
+            for j in range(1,5):
+                if board[j][4+i-j] == turn:
+                    counter += 1
+            
+            if counter == 4:
+                return True
+    except:
+        print("")
+    
+    return False
+
 
 
 def draw(board: np.array):
     for i in range(5):
         for j in range(5):
-            if board[i][j] != 0:
+            if board[i][j] == 0:
                 return False
             
     return True
 
 a = np.array([
     [0,0,0,0,0],
-    [0,0,0,0,0],
-    [0,0,0,0,0],
-    [0,0,0,0,0],
-    [1,0,0,0,0]
+    [1,0,0,0,0],
+    [2,1,0,0,0],
+    [1,1,1,0,0],
+    [2,2,2,1,0]
 ])
 
+print(d_win(a,1))
 # print(get_bottom_row(a))
