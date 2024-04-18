@@ -97,19 +97,19 @@ while running:
         select_row = get_bottom_row(board)
         configure_selected_row = configure_row(select_row)
 
-        if 50 < x < 150:
+        if 50 < x < 150 and configure_selected_row[0] != -1:
             pygame.draw.circle(screan, color, (100,configure_selected_row[0]), 30)
             X = 0
-        elif 150 < x < 250:
+        elif 150 < x < 250 and configure_selected_row[1] != -1:
             pygame.draw.circle(screan, color, (200,configure_selected_row[1]), 30)
             X = 1
-        elif 250 < x < 350:
+        elif 250 < x < 350 and configure_selected_row[2] != -1:
             pygame.draw.circle(screan, color, (300,configure_selected_row[2]), 30)
             X = 2
-        elif 350 < x < 450:
+        elif 350 < x < 450 and configure_selected_row[3] != -1:
             pygame.draw.circle(screan, color, (400,configure_selected_row[3]), 30)
             X = 3
-        elif 450 < x < 550:
+        elif 450 < x < 550 and configure_selected_row[4] != -1:
             pygame.draw.circle(screan, color, (500,configure_selected_row[4]), 30)
             X = 4
     elif game > 0:
